@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Box, Button, FormControl, InputLabel, Select, SelectProps, MenuItem } from '@mui/material'
-import axios from 'axios'
+import { datadogRum } from '@datadog/browser-rum'
+import axios, { AxiosError } from 'axios'
 
 type UserStateType = {
   id: string
@@ -51,9 +52,19 @@ const ProductList = () => {
     navigate('/product/add')
   }
 
-  const handleChangeWarehouse: SelectProps['onChange'] = (event) => {
-    
+  const handleChangeWarehouse: SelectProps['onChange'] = (event) => {    
     console.log('SELECTED', event.target)
+  }
+
+  const fetchFakeError = async() => {
+    try {
+      const response = await axios.get('https://mock.codes/400')
+      console.log('RESPONSE', response)
+    }
+    catch(err) {
+      const errResponse = err as AxiosError
+      datadogRum.addError(err, { errorSource: 'API CALL ERROR', url: errResponse?.config?.url, method: errResponse?.config?.method })
+    }
   }
 
   return (
@@ -82,6 +93,7 @@ const ProductList = () => {
     </Box>
 
     <button onClick={() => getData()}>FETCH DATA</button>
+    <button onClick={() => fetchFakeError()}>Simulate fake error</button>
     <ul >
       {users.map(item => (
         <li key={item.id} data-testid="results">{item.id} - {item.name}</li>
