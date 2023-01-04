@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { datadogRum } from '@datadog/browser-rum'
+import { datadogLogs } from '@datadog/browser-logs'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -41,6 +43,30 @@ if (process.env.NODE_ENV === 'development') {
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+datadogLogs.init({
+  clientToken: 'pub2adfd6205348b86b3750b371febecb9d',
+  service: 'my-ts-app',
+  site: 'us5.datadoghq.com',
+  forwardErrorsToLogs: true,
+  sampleRate: 100,
+})
+
+datadogRum.init({
+    applicationId: 'f751ab6b-15c7-49fe-bb07-e24f95b86614',
+    clientToken: 'pub2adfd6205348b86b3750b371febecb9d',
+    site: 'us5.datadoghq.com',
+    service:'my-ts-app',
+    env:'my-ts-app-dev',    
+    version: '1.0.0',
+    sampleRate: 100,
+    premiumSampleRate: 100,
+    trackInteractions: true,
+    defaultPrivacyLevel:'mask-user-input'
+});
+    
+datadogRum.startSessionReplayRecording();
+
 root.render(
   <React.StrictMode>
     <App />

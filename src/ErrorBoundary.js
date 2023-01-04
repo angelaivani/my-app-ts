@@ -1,5 +1,5 @@
 import React from 'react'
-// import { datadogLogs } from '@datadog/browser-logs'
+import { datadogLogs } from '@datadog/browser-logs'
 
 const ErrorComponent = () => <h1>ada error nie</h1>
 
@@ -10,15 +10,12 @@ class ErrorBoundary extends React.Component {
     info: { componentStack: '' },
   }
 
-  static getDerivedStateFromError = (error) => {
-    console.log('HEH ERROR', error)
+  static getDerivedStateFromError = (error) => {    
     return { hasError: true }
   }
 
-  componentDidCatch(error, info) {
-    console.log('ERR', error);
-    console.log('INFO', info)
-    // datadogLogs.logger.error('ERROR BOUNDARY', { error: error.toString(), info })
+  componentDidCatch(error, info) {    
+    datadogLogs.logger.error('ERROR BOUNDARY in my-ts-app repo', { error: error.toString(), info })
     this.setState({ error, info })
   }
 
