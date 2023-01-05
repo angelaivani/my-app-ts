@@ -1,11 +1,13 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+// import './tracer'
 import { datadogRum } from '@datadog/browser-rum'
 import { datadogLogs } from '@datadog/browser-logs'
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
 
 import { rest, setupWorker } from 'msw'
 
@@ -62,7 +64,9 @@ datadogRum.init({
     sampleRate: 100,
     premiumSampleRate: 100,
     trackInteractions: true,
-    defaultPrivacyLevel:'mask-user-input'
+    defaultPrivacyLevel:'mask-user-input',
+    allowedTracingOrigins: ["https://angelaivani.github.io/my-app-ts/", (origin) => { console.log('ORIGIN', origin); return origin === "https://angelaivani.github.io/my-app-ts" || origin === "https://angelaivani.github.io" || origin === "http://localhost:3000"}]
+
 });
     
 datadogRum.startSessionReplayRecording();
