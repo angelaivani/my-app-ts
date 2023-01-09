@@ -66,11 +66,10 @@ datadogRum.init({
     premiumSampleRate: 100,
     trackInteractions: true,
     defaultPrivacyLevel:'mask-user-input',
+    sessionReplaySampleRate: 0,
     allowedTracingOrigins: ["https://angelaivani.github.io/my-app-ts/", (origin) => { console.log('ORIGIN', origin); return origin === "https://angelaivani.github.io/my-app-ts" || origin === "https://angelaivani.github.io" || origin === "http://localhost:3000"}]
-
 });
     
-datadogRum.startSessionReplayRecording();
 
 root.render(
   <React.StrictMode>
