@@ -8,7 +8,7 @@ class ErrorBoundary extends React.Component {
   state = {
     hasError: false,
     error: { message: '', stack: '' },
-    info: { componentStack: '' },
+    errorInfo: { componentStack: '' },
   }
 
   static getDerivedStateFromError = (error) => {    
@@ -25,7 +25,7 @@ class ErrorBoundary extends React.Component {
       errorSource: 'ERROR BOUNDARY',
     })
 
-    this.setState({ error, info })
+    this.setState({ error, errorInfo })
   }
 
   render() {
