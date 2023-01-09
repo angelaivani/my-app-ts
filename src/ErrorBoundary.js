@@ -16,8 +16,15 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    datadogRum.addError(error, { error, errorInfo: info, errorSource: 'ERROR BOUNDARY' });
-    datadogLogs.logger.error('ERROR BOUNDARY in my-ts-app repo', { error: error, info })    
+    datadogRum.addError(error, {
+      errorInformation: errorInfo.componentStack,
+      errorSource: 'ERROR BOUNDARY',
+    })
+    datadogLogs.logger.error('ERROR BOUNDARY in my-ts-app repo', {      
+      errorInformation: errorInfo.componentStack,
+      errorSource: 'ERROR BOUNDARY',
+    })
+
     this.setState({ error, info })
   }
 
