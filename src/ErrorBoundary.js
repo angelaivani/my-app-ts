@@ -15,7 +15,7 @@ class ErrorBoundary extends React.Component {
     return { hasError: true }
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error, errorInfo) {
     datadogRum.addError(error, {
       errorInformation: errorInfo.componentStack,
       errorSource: 'ERROR BOUNDARY',
