@@ -1,10 +1,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import './tracer'
 import './telemetry-tracer'
-import { datadogRum } from '@datadog/browser-rum'
 import { datadogLogs } from '@datadog/browser-logs'
+// import { datadogRum } from '@datadog/browser-rum'
+// import './tracer'
 
 import './index.css';
 import App from './App';
@@ -55,20 +55,20 @@ datadogLogs.init({
   sampleRate: 100,
 })
 
-datadogRum.init({
-    applicationId: 'f751ab6b-15c7-49fe-bb07-e24f95b86614',
-    clientToken: 'pub2adfd6205348b86b3750b371febecb9d',
-    site: 'us5.datadoghq.com',
-    service:'my-ts-app',
-    env:'my-ts-app-dev',    
-    version: '1.0.0',
-    sampleRate: 100,
-    premiumSampleRate: 100,
-    trackInteractions: true,
-    defaultPrivacyLevel:'mask-user-input',
-    sessionReplaySampleRate: 0,
-    allowedTracingOrigins: ["https://angelaivani.github.io/my-app-ts/", (origin) => { console.log('ORIGIN', origin); return origin === "https://angelaivani.github.io/my-app-ts" || origin === "https://angelaivani.github.io" || origin === "http://localhost:3000"}]
-});
+// datadogRum.init({
+//     applicationId: 'f751ab6b-15c7-49fe-bb07-e24f95b86614',
+//     clientToken: 'pub2adfd6205348b86b3750b371febecb9d',
+//     site: 'us5.datadoghq.com',
+//     service:'my-ts-app',
+//     env:'my-ts-app-dev',    
+//     version: '1.0.0',
+//     sampleRate: 100,
+//     premiumSampleRate: 100,
+//     trackInteractions: true,
+//     defaultPrivacyLevel:'mask-user-input',
+//     sessionReplaySampleRate: 0,
+//     allowedTracingOrigins: ["https://angelaivani.github.io/my-app-ts/", (origin) => { console.log('ORIGIN', origin); return origin === "https://angelaivani.github.io/my-app-ts" || origin === "https://angelaivani.github.io" || origin === "http://localhost:3000"}]
+// });
     
 
 root.render(

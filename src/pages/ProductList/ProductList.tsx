@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Box, Button, FormControl, InputLabel, Select, SelectProps, MenuItem } from '@mui/material'
-import { datadogRum } from '@datadog/browser-rum'
 import axios, { AxiosError } from 'axios'
+import { datadogLogs } from '@datadog/browser-logs'
 import * as logger from '../../telemetry-log' 
 
 type UserStateType = {
@@ -65,7 +65,9 @@ const ProductList = () => {
     }
     catch(err) {
       const errResponse = err as AxiosError
-      datadogRum.addError(err, { errorSource: 'API CALL ERROR', url: errResponse?.config?.url, method: errResponse?.config?.method })
+      datadogLogs.logger.error('API CALL ERROR', {      
+        url: errResponse?.config?.url, method: errResponse?.config?.method
+      })      
     }
   }
 

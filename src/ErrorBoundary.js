@@ -1,5 +1,4 @@
 import React from 'react'
-import { datadogRum } from '@datadog/browser-rum'
 import { datadogLogs } from '@datadog/browser-logs'
 
 const ErrorComponent = () => <h1>ada error nie</h1>
@@ -15,11 +14,7 @@ class ErrorBoundary extends React.Component {
     return { hasError: true }
   }
 
-  componentDidCatch(error, errorInfo) {
-    datadogRum.addError(error, {
-      errorInformation: errorInfo.componentStack,
-      errorSource: 'ERROR BOUNDARY',
-    })
+  componentDidCatch(error, errorInfo) {    
     datadogLogs.logger.error('ERROR BOUNDARY in my-ts-app repo', {      
       errorInformation: errorInfo.componentStack,
       errorSource: 'ERROR BOUNDARY',
