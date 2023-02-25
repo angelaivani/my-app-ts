@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { Box, Button, FormControl, InputLabel, Select, SelectProps, MenuItem } from '@mui/material'
 import axios, { AxiosError } from 'axios'
 import { datadogLogs } from '@datadog/browser-logs'
-import * as logger from '../../telemetry-log' 
 
 type UserStateType = {
   id: string
@@ -58,8 +57,7 @@ const ProductList = () => {
   }
 
   const fetchFakeError = async() => {
-    try {
-      logger.info("Fetch fake error")
+    try {      
       const response = await axios.get('https://mock.codes/400')
       console.log('RESPONSE', response)
     }

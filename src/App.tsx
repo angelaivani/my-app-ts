@@ -1,18 +1,16 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Link } from "react-router-dom";
-
-import Landing from './pages/Landing'
-import AddProduct from './pages/AddProduct'
-import ProductList from './pages/ProductList'
-import BuggyPage from './pages/BuggyPage'
+import Landing from 'pages/Landing'
+import AddProduct from 'pages/AddProduct'
+import ProductList from 'pages/ProductList'
+import BuggyPage from 'pages/BuggyPage'
+import ErrorBoundary from 'ErrorBoundary'
 import './App.css';
 
 function App() {
-  
-
-
   return (
-    <div className="App">              
+    <ErrorBoundary>
+      <div className="App">              
         <BrowserRouter>
         <Link to="/" style={{ marginRight: '15px' }}>Landing Page</Link>
         <Link to="/product/list" style={{ marginRight: '15px' }}>Product List</Link>
@@ -30,6 +28,7 @@ function App() {
         </Routes>
         </BrowserRouter>      
     </div>
+    </ErrorBoundary>    
   );
 }
 
